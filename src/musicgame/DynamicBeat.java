@@ -20,6 +20,8 @@ public class DynamicBeat extends JFrame {
 
         introBackground = new ImageIcon(Main.class.getResource("../images/introBackground(title).jpg.jpeg")).getImage();
 
+        Music introMusic = new Music("intromusic.mp3", true);
+        introMusic.start();
     }
 
     public void paint(Graphics g) {

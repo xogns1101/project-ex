@@ -25,17 +25,33 @@ public class Music extends Thread{
             System.out.println(e.getMessage());
         }
 
-        public int getTIme() {
-            if(player == null)
-                return 0;
-            return player.getPosition();
-        }
-
-        public
-
-
 
     }
 
+    public int getTIme() {
+        if(player == null)
+            return 0;
+        return player.getPosition();
+    }
+
+    public void close() {
+        isLoop = false;
+        player.close();
+        this.interrupt(); // 종료하기 위한 코드
+    }
+
+    @Override
+    public void run() {
+        try{
+            do{
+                player.play();
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+                player = new Player(bis);
+            } while(isLoop);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
